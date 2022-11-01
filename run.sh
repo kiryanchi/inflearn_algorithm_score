@@ -48,8 +48,7 @@ do
     exit
   fi
 
-  printf "Test%i: " "i"
-  cmp_result
+  echo "Test$i: $(cmp_result)"
 done
 
 echo "종료하려면 아무 키나 누르세요..."; read
