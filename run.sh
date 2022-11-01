@@ -1,12 +1,24 @@
 #!/bin/zsh
 
-PYTHON_FILE="./code.py"
+# * Original Code
+# * https://github.com/kiryanchi/inflearn_algorithm_score/blob/main/run.sh
+# * Author: kiryanchi
+
+# Setting
+CODE_FILE="code.py"
+# Done
+
+dirPath=`dirname $0`
+PYTHON_FILE="$dirPath/$CODE_FILE"
+
+INPUT_FILE=""
+OUTPUT_FILE=""
 
 function cmp_result() {
   START=`gdate +%s.%N`
-  RESULT=`cat $1 | python $PYTHON_FILE | tr -d '\r'`
+  RESULT=`cat $INPUT_FILE | python $PYTHON_FILE | tr -d '\r'`
   END=`gdate +%s.%N`
-  OUTPUT=`cat $2 | tr -d '\r'`
+  OUTPUT=`cat $OUTPUT_FILE | tr -d '\r'`
 
   diff=$( echo "$END - $START" | bc -l )
   if [ $RESULT = $OUTPUT ]
@@ -23,8 +35,8 @@ function cmp_result() {
 
 for i in {1..5}
 do
-  INPUT_FILE=./in$i.txt
-  OUTPUT_FILE=./out$i.txt
+  INPUT_FILE=$dirPath/in$i.txt
+  OUTPUT_FILE=$dirPath/out$i.txt
 
   if ! ( test -f "$INPUT_FILE" ); then
     echo "$INPUT_FILE 존재하지 않음"
@@ -37,5 +49,7 @@ do
   fi
 
   printf "Test%i: " "i"
-  cmp_result $INPUT_FILE $OUTPUT_FILE
+  cmp_result
 done
+
+echo "종료하려면 아무 키나 누르세요..."; read
