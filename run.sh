@@ -1,5 +1,23 @@
 #!/bin/zsh
 
+function cmp_result() {
+  INPUT_FILE=$1
+  OUTPUT_FILE=$2
+
+  start=`gdate +%s.%N`
+  RESULT=`cat $INPUT_FILE | python ./code.py | tr -d '\r'`
+  end=`gdate +%s.%N`
+  OUTPUT=`cat $OUTPUT_FILE | tr -d '\r'`
+
+  diff=$( echo "$end - $start" | bc -l )
+  if [ $RESULT = $OUTPUT ]
+  then
+    echo "$diff Success"
+  else
+    echo "Fail"
+  fi
+}
+
 for i in {1..5}
 do
   INPUT_FILE=./in$i.txt
@@ -14,22 +32,7 @@ do
     echo "$OUTPUT_FILE 존재하지 않음"
     exit
   fi
-done
 
-
-cmp_result() {
-  RESULT=`cat $1 | python ./code.py`
-  OUTPUT=`cat $2`
-
-  if [ $RESULT -eq $OUTPUT ]
-  then
-    echo "same"
-  else
-    echo "different"
-  fi
-}
-
-for i in {1..1}
-do
-  cmp_result ./in${i}.txt ./out${i}.txt
+  printf "Test%i: " "i"
+  cmp_result $INPUT_FILE $OUTPUT_FILE
 done
