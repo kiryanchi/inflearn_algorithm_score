@@ -1,15 +1,14 @@
 #!/bin/zsh
 
+PYTHON_FILE="./code.py"
+
 function cmp_result() {
-  INPUT_FILE=$1
-  OUTPUT_FILE=$2
+  START=`gdate +%s.%N`
+  RESULT=`cat $1 | python $PYTHON_FILE | tr -d '\r'`
+  END=`gdate +%s.%N`
+  OUTPUT=`cat $2 | tr -d '\r'`
 
-  start=`gdate +%s.%N`
-  RESULT=`cat $INPUT_FILE | python ./code.py | tr -d '\r'`
-  end=`gdate +%s.%N`
-  OUTPUT=`cat $OUTPUT_FILE | tr -d '\r'`
-
-  diff=$( echo "$end - $start" | bc -l )
+  diff=$( echo "$END - $START" | bc -l )
   if [ $RESULT = $OUTPUT ]
   then
     printf "\t%f\t" "diff"
