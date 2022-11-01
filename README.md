@@ -28,6 +28,9 @@ brew install coreutils
 
 > 권한 오류가 뜨면 `chmod 755 ./run.sh` 를 해준다.
 
+> [run.sh](https://github.com/kiryanchi/inflearn_algorithm_score/blob/main/run.sh) 에서 파일 이름을`core.py` 에서 \
+다른 걸로 바꿔도 된다.
+
 ## 계획
 
 - [ ] C++ 버전도 지원 (요청이 있다면..)
