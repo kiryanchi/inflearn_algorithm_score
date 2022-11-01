@@ -12,6 +12,22 @@
 
 [파이썬 알고리즘 문제풀이 입문 (코딩테스트 대비)](https://www.inflearn.com/course/%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4-%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4)
 
+## 사용법
+
+[필수] ***macOS*** 라면 **coreutils** 를 설치해주세요.
+
+```shell
+brew install coreutils
+```
+
+사용법은 Windows 파일 측정기와 크게 차이가 없다.
+
+1. 작성한 코드 파일을 `code.py`로 저장한다.
+
+2. [run.sh](https://github.com/kiryanchi/inflearn_algorithm_score/blob/main/run.sh) 파일을 폴더에 넣고 사용하면 된다.
+
+> 권한 오류가 뜨면 `chmod 755 ./run.sh` 를 해준다.
+
 ## 계획
 
 - [ ] C++ 버전도 지원 (요청이 있다면..)
