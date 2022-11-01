@@ -12,7 +12,11 @@ function cmp_result() {
   diff=$( echo "$end - $start" | bc -l )
   if [ $RESULT = $OUTPUT ]
   then
-    echo "$diff Success"
+    printf "\t%f\t" "diff"
+    if ((`bc <<< "$diff < 1.0"`))
+      then echo "Success"
+      else echo "Time Out"
+    fi
   else
     echo "Fail"
   fi
